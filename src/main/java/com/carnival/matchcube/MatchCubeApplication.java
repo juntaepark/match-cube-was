@@ -16,7 +16,7 @@ public class MatchCubeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MatchCubeApplication.class, args);
 	}
-    //	MyBatis는 App 전체에서 활용할 수 있도록 Application Class에서 초기화
+    //	MyBatis는 App 전체에서 활용할 수 있도록 Application Class에서 초기화 rjrj
     //	아래 코드를 참고해 JavaBean을 생성
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
