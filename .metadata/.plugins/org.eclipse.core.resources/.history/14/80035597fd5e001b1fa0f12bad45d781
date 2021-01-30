@@ -1,0 +1,18 @@
+package me.eastglow.springbootmatchcube;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+//@MapperScan은 mapper interface가 있는 경로를 명시하여 
+//해당 경로를 스캔하고 거기에 있는 클래스들은 
+//SqlSessionFactoryBean을 주입 받게 된다.
+@MapperScan("me.eastglow.mapper")
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+}

@@ -1,0 +1,11 @@
+#project config file - Driver, DB Host, DB Username, DB Password
+spring.datasource.driverClassName=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+spring.datasource.url=jdbc:log4jdbc:mysql://match-cube.cprb3hntz76s.ap-northeast-2.rds.amazonaws.com/MatchcubeDB?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+spring.datasource.username=admin
+spring.datasource.password=admin12#$
+
+mybatis.type-aliases-package=me.eastglow.vo
+mybatis.configuration.map-underscore-to-camel-case=true
+mybatis.configuration.default-fetch-size=100
+mybatis.configuration.default-statement-timeout=30
+mybatis.mapper-locations=classpath:mapper/*.xml
