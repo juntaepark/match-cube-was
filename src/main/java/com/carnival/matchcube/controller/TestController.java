@@ -10,7 +10,7 @@ public class TestController {
 //  웹 브라우저에서\ localhost :8080 으로 테스트
     @RequestMapping("/")
     public String index(){
+    	System.out.println("hello");
         return "Hello World!";
     }
-
 }
