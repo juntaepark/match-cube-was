@@ -2,18 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--UserDAO와 연결-->
-<mapper namespace="com.carnival.matchcube.dao.UserDAO">
+<mapper namespace="com.carnival.matchcube.mapper.UserMapper">
 
-<!--UserDAO 인터페이스의 selectUsers() 메소드를 호출하면 실행할 SELECT문이며, -->
-<!--UserDTO형 객체를 파라미터로 받아, UserDTO형 객체를 반환-->
-    <select id="selectUsers" parameterType="com.carnival.matchcube.dto.UserDTO" resultType="com.carnival.matchcube.dto.UserDTO">
-        SELECT `seq`, `name`, `country`
-        FROM lab03
---         만약 파라미터에 country가 있다면 SQL문에 15번째 줄의 WHERE절을 추가
---         이와 같이 상황에 맞추어 질의문이 변경되는 것을 동적 SQL(Dynamic SQL)
-        <if test='country != null and country != ""'>
-        WHERE `country` = #{country}
-        </if>
+    <select id="selectData" resultType="hashMap">
+        SELECT *
+        FROM   mc_acnt_info;
     </select>
+
+    <select id="pselectData" parameterType="hashMap" resultType="hashMap">
+        SELECT *
+        FROM   mc_acnt_info
+        WHERE  acnt_id = #{acntId}
+        AND    email_id = #{emailId};
+    </select>
+
+    <insert id="pinsert" parameterType="hashMap">
+        INSERT INTO mc_login_log
+        (acnt_id  , login_sect_code, prce_dt)
+        VALUES
+        (#{acntId}, '1'            , CURRENT_TIMESTAMP);
+    </insert>
 
 </mapper>

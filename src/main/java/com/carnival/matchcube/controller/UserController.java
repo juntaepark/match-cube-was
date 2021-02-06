@@ -1,31 +1,38 @@
 package com.carnival.matchcube.controller;
 
-import com.carnival.matchcube.dao.UserDAO;
-import com.carnival.matchcube.dto.UserDTO;
-import org.mybatis.spring.annotation.MapperScan;
+import com.carnival.matchcube.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
+import java.util.HashMap;
 import java.util.List;
 
-// 사용자 요청을 처리하고 응답을 전송하는 컨트롤러를 정의
-// 맵퍼()를 탐색할 패키지 지정
-@RestController
-@MapperScan(basePackages = "com.carnival.matchcube.dao")
+@RestController // "이 클래스틑 RESTful API를 위한 컨트롤러 클래스이다"라고 스프링에게 알려줌
+@RequestMapping("/api") // 구체적으로 어떤 경로인지 지정
 public class UserController {
-//    UserDAO bean을 자동으로 주입
-    @Autowired
-    private UserDAO userDAO;
 
-//  Query String으로 country를 받도록 설정
-    @RequestMapping("/users") // Handler level Mapping
-    public List<UserDTO> users(@RequestParam(value = "country", defaultValue = "") String country) throws Exception{
-//      전달받은 country를 가진 UserDTO형 객체를 생성합니다. 이 객체는 MyBatis에 파라미터로 전달
-        final UserDTO param = new UserDTO(0, null, country);
-//      생성한 객체를 파라미터로 전달하여 DB로부터 사용자 목록 조회
-        final List<UserDTO> userList = userDAO.selectUsers(param);
-        return userList;
+    @Autowired
+    private UserService userService; // MyService bean(객체)을 자동으로 주입
+
+    // 파라미터 없는 Get메서드 조회
+    @GetMapping("/mc9001S")
+    public List<HashMap<Object, Object>> mc9001S(){
+        return userService.selectData();
     }
+
+    // 파라미터가 필요한 Get메서드 조회 ( 쿼리스트링 )
+    @GetMapping("/mc9002S")
+    public List<HashMap<Object, Object>> mc9002S(@RequestParam(value = "acntId", defaultValue = "0") int acntId,
+                                                 @RequestParam(value = "emailId") String emailId){
+        HashMap map = new HashMap<Object, Object>();
+        map.put("acntId", acntId);
+        map.put("emailId", emailId);
+        return userService.pselectData(map);
+    }
+
+    // Post메서드
+    @PostMapping("/mc9003S")
+    public int mc9003S(@RequestBody HashMap<Object, Object> vo) throws Exception { // @RequestBody - HTTP Response Body 부분을 JSON의 형태로 리턴 할 것임을 알려줌
+        return userService.postInsert(vo);
+    }
+
 }
