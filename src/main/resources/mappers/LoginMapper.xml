@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carnival.matchcube.mapper.SignInMapper">
+
+    <select id="signIn" parameterType="com.carnival.matchcube.dto.SignInDTO" resultType="com.carnival.matchcube.dto.SignInValueDTO">
+        SELECT acnt_id,
+               name,
+               nick_name,
+               status_code
+        FROM   mc_acnt_info
+        WHERE  email_id = #{emailId}
+        AND    pwd      = #{pwd};
+    </select>
+
+</mapper>
