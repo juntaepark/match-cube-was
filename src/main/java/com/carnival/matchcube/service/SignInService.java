@@ -26,6 +26,7 @@ public class SignInService {
 
     public ResponseEntity signIn(SignInDTO signInDTO) throws Exception {
         SignInValueDTO signInValueDTO = signInMapper.signIn(signInDTO);
+
         if(signInValueDTO == null){
             return new ResponseEntity(DefaultRes.res(NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
         }
