@@ -10,5 +10,5 @@ import lombok.Setter;
 public class CategoryValueDTO {
     public Long categoryId;
     public String categoryName;
-
+    public String imageUrl;
 }

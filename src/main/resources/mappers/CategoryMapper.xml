@@ -5,7 +5,8 @@
 
     <select id="category" resultType="com.carnival.matchcube.dto.CategoryValueDTO">
         SELECT category_id,
-               category_name
+               category_name,
+               image_url
         FROM category
         WHERE status = 1;
     </select>
