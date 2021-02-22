@@ -28,7 +28,7 @@ public class CategoryService {
             return new ResponseEntity(DefaultRes.res(NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
         }
         else{
-            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, categoryValueDTO), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.SUCCESS, categoryValueDTO), HttpStatus.OK);
         }
     }
 }
