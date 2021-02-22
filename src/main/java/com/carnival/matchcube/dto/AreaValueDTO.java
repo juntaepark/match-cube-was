@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AreaValueDTO {
-    public int code;
+    public Long code;
     public String name;
 }

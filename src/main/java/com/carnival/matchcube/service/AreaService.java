@@ -10,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.carnival.matchcube.Response.ResponseMessage.NOT_VALID_CITY_CODE;
-import static com.carnival.matchcube.Response.StatusCode.NOT_VALID_AREA_CODE;
+import java.util.List;
+
+import static com.carnival.matchcube.Response.ResponseMessage.*;
+import static com.carnival.matchcube.Response.StatusCode.*;
 
 @Service
 @Transactional
@@ -23,14 +25,14 @@ public class AreaService {
     private AreaMapper areaMapper; //Mapper
 
     public ResponseEntity getArea() throws Exception {
-        AreaValueDTO areaValueDTO = areaMapper.getArea();
+        List<AreaValueDTO> areaValueDTO = areaMapper.getArea();
 
         if(areaValueDTO == null) {
             return new ResponseEntity(DefaultRes.res(NOT_VALID_AREA_CODE, NOT_VALID_CITY_CODE), HttpStatus.OK);
         }
 
         else {
-            return new ResponseEntity(DefaultRes.res(NOT_VALID_AREA_CODE, NOT_VALID_CITY_CODE), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(OK, SUCCESS, areaValueDTO), HttpStatus.OK);
         }
     }
 
