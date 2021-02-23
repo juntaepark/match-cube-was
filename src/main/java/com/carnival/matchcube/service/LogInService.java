@@ -5,7 +5,7 @@ import com.carnival.matchcube.Response.ResponseMessage;
 import com.carnival.matchcube.Response.StatusCode;
 import com.carnival.matchcube.dto.SignInDTO;
 import com.carnival.matchcube.dto.SignInValueDTO;
-import com.carnival.matchcube.mapper.SignInMapper;
+import com.carnival.matchcube.mapper.LogInMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +17,13 @@ import static com.carnival.matchcube.Response.StatusCode.NO_CONTENT;
 
 @Service
 @Transactional
-public class SignInService {
+public class LogInService {
 
     @Autowired
-    private SignInMapper signInMapper;
+    private LogInMapper logInMapper;
 
-    public ResponseEntity signIn(SignInDTO signInDTO) throws Exception {
-        SignInValueDTO signInValueDTO = signInMapper.signIn(signInDTO);
+    public ResponseEntity logIn(SignInDTO signInDTO) throws Exception {
+        SignInValueDTO signInValueDTO = logInMapper.logIn(signInDTO);
 
         if(signInValueDTO == null){
             return new ResponseEntity(DefaultRes.res(NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);

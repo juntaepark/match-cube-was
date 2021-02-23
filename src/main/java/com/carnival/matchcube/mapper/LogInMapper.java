@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-public interface SignInMapper {
+public interface LogInMapper {
 
-    SignInValueDTO signIn(SignInDTO signInDTO) throws Exception ;
+    SignInValueDTO logIn(SignInDTO signInDTO) throws Exception ;
 
 }
