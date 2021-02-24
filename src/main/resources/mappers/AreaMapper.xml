@@ -3,15 +3,12 @@
 
 <mapper namespace="com.carnival.matchcube.mapper.AreaMapper">
 
-    <select id="isExistCode">
-        SELECT EXISTS(SELECT * FROM si_gun_gu) as exist
-        FROM   si_gun_gu
-        WHERE  code = ?;
+    <select id="getValidArea" parameterType="com.carnival.matchcube.dto.AreaDTO">
+        SELECT EXISTS(SELECT * FROM si_gun_gu WHERE code = #{code}) as exist;
     </select>
 
     <select id="getArea" resultType="com.carnival.matchcube.dto.AreaValueDTO">
-        SELECT code,
-               name
+        SELECT code,name
         FROM   si_gun_gu
         WHERE  code BETWEEN 11 AND 41;
     </select>
@@ -20,7 +17,7 @@
         SELECT code,
                name
         FROM si_gun_gu as sgg
-        WHERE BINARY code LIKE CONCAT(?,'%');
+        WHERE code LIKE CONCAT(#{code},'0%');
     </select>
 
 </mapper>

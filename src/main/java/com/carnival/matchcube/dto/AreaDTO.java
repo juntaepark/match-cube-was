@@ -8,5 +8,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AreaDTO {
-    public Long code;
+    public short code;
 }
