@@ -3,8 +3,8 @@ package com.carnival.matchcube.service;
 import com.carnival.matchcube.Response.DefaultRes;
 import com.carnival.matchcube.Response.ResponseMessage;
 import com.carnival.matchcube.Response.StatusCode;
-import com.carnival.matchcube.dto.SignInDTO;
-import com.carnival.matchcube.dto.SignInValueDTO;
+import com.carnival.matchcube.dto.LogInDTO;
+import com.carnival.matchcube.dto.LogInValueDTO;
 import com.carnival.matchcube.mapper.LogInMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,14 +22,15 @@ public class LogInService {
     @Autowired
     private LogInMapper logInMapper;
 
-    public ResponseEntity logIn(SignInDTO signInDTO) throws Exception {
-        SignInValueDTO signInValueDTO = logInMapper.logIn(signInDTO);
+    public ResponseEntity logIn(LogInDTO logInDTO) throws Exception {
+        LogInValueDTO logInValueDTO = logInMapper.logIn(logInDTO);
 
-        if(signInValueDTO == null){
+        if(logInValueDTO == null){
             return new ResponseEntity(DefaultRes.res(NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
         }
         else{
-            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, signInValueDTO), HttpStatus.OK);
+            System.out.println(logInValueDTO);
+            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, logInValueDTO), HttpStatus.OK);
         }
     }
 }

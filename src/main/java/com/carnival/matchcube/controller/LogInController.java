@@ -1,6 +1,6 @@
 package com.carnival.matchcube.controller;
 
-import com.carnival.matchcube.dto.SignInDTO;
+import com.carnival.matchcube.dto.LogInDTO;
 import com.carnival.matchcube.service.LogInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ public class LogInController {
 
     // SignIn API
     @PostMapping
-    public ResponseEntity logIn(SignInDTO signInDTO) throws Exception {
-        return logInService.logIn(signInDTO);
+    public ResponseEntity logIn(LogInDTO logInDTO) throws Exception {
+        return logInService.logIn(logInDTO);
     }
 }

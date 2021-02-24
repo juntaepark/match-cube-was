@@ -7,8 +7,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class SignInDTO {
+public class LogInDTO {
     public String emailId;
-    public String pwd;
+    public String password;
 }
 
