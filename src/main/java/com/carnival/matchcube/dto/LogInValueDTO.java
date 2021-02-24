@@ -2,14 +2,17 @@ package com.carnival.matchcube.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @Getter
 @Setter
-public class SignInValueDTO {
-    public int acntId;
+@AllArgsConstructor
+@NoArgsConstructor
+public class LogInValueDTO {
+    public int accountId;
     public String name;
     public String nickName;
-    public String statusCode;
+    public String status;
 }
+
