@@ -3,14 +3,15 @@
 
 <mapper namespace="com.carnival.matchcube.mapper.AreaMapper">
 
-    <select id="getValidArea" parameterType="com.carnival.matchcube.dto.AreaDTO">
+    <select id="getValidArea" parameterType="com.carnival.matchcube.dto.AreaDTO" resultType="com.carnival.matchcube.dto.AreaCodeValidDTO">
         SELECT EXISTS(SELECT * FROM si_gun_gu WHERE code = #{code}) as exist;
     </select>
 
     <select id="getArea" resultType="com.carnival.matchcube.dto.AreaValueDTO">
         SELECT code,name
         FROM   si_gun_gu
-        WHERE  code BETWEEN 11 AND 41;
+        WHERE  code BETWEEN 11 AND 41
+        ORDER BY name;
     </select>
 
     <select id="getUnderArea" parameterType="com.carnival.matchcube.dto.AreaDTO" resultType="com.carnival.matchcube.dto.AreaValueDTO">

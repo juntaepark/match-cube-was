@@ -8,5 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AreaCodeValidDTO {
-    public short isExistCode;
+    public int exist;
+
+    public AreaCodeValidDTO() { }
 }

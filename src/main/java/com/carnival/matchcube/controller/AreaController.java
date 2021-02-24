@@ -17,14 +17,17 @@ public class AreaController {
     @Autowired
     private AreaService areaService;
 
+    public AreaController() { }
+
     @GetMapping
     public ResponseEntity getArea() throws Exception {
         return areaService.getArea();
-
     }
 
     @GetMapping("/{code}/si-gun-gu")
-    public ResponseEntity getUnderArea(@PathVariable("code") AreaDTO areaDTO) throws Exception {
+    public ResponseEntity getUnderArea(@PathVariable("code") int code) throws Exception {
+        AreaDTO areaDTO = new AreaDTO(code);
+
         return areaService.getUnderArea(areaDTO);
     }
 }

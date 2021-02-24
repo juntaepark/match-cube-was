@@ -4,9 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
 public class AreaDTO {
-    public short code;
+    public int code;
+
+    public AreaDTO(int code) {
+        this.code = code;
+    }
 }

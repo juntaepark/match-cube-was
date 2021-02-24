@@ -25,6 +25,8 @@ public class AreaService {
     @Autowired
     private AreaMapper areaMapper;
 
+    public AreaService() { }
+
     public ResponseEntity getArea() throws Exception { //위치필터 : 시/도 조회
         List<AreaValueDTO> areaValueDTO = areaMapper.getArea();
 
@@ -33,12 +35,12 @@ public class AreaService {
 
     public ResponseEntity getUnderArea(AreaDTO areaDTO) throws Exception { //위치필터 : 시/도 code로 소속 시/군/구 조회
         List<AreaValueDTO> areaValueDTO = areaMapper.getUnderArea(areaDTO);
-        boolean isValidCode = areaMapper.getValidArea(areaDTO);
+        AreaCodeValidDTO isValidCode = areaMapper.getValidArea(areaDTO);
 
-        if(!isValidCode) //유효한 시/도 code가 아닐 경우
+        if(isValidCode.exist == 0) //유효한 시/도 code가 아닐 경우
             return new ResponseEntity(DefaultRes.res(NOT_VALID_AREA_CODE, NOT_VALID_CITY_CODE), HttpStatus.OK);
 
         else
-            return new ResponseEntity(DefaultRes.res(NOT_VALID_AREA_CODE, NOT_VALID_CITY_CODE, areaValueDTO), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(OK, SUCCESS, areaValueDTO), HttpStatus.OK);
     }
 }

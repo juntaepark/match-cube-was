@@ -13,5 +13,5 @@ import java.util.List;
 public interface AreaMapper {
     List<AreaValueDTO > getArea() throws Exception; //시도 받아오기
     List<AreaValueDTO> getUnderArea(AreaDTO areaDTO) throws Exception; //areaDTO로 시/도 code 받아서 해당 시/도의 시/군/구 받기
-    boolean getValidArea(AreaDTO areaDTO) throws Exception; //시/도code 유효성 검사
+    AreaCodeValidDTO getValidArea(AreaDTO areaDTO) throws Exception; //시/도code 유효성 검사
 }
