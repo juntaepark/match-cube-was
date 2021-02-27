@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
 public interface LogInMapper {
 
     public LogInResponseDTO logIn(LogInDTO logInDTO) throws Exception ;
-
 }

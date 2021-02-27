@@ -15,7 +15,7 @@ public class LogInController {
 
     // Login Api
     @PostMapping
-    public ResponseEntity logIn(LogInDTO logInDTO) throws Exception {
+    public ResponseEntity logIn(@RequestBody LogInDTO logInDTO) throws Exception {
         return logInService.logIn(logInDTO);
     }
 

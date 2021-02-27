@@ -17,8 +17,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import static com.carnival.matchcube.Response.ResponseMessage.EMAIL_NOTFOUND;
 import static com.carnival.matchcube.Response.ResponseMessage.LOGIN_FAIL;
 import static com.carnival.matchcube.Response.StatusCode.NO_CONTENT;
+import static com.carnival.matchcube.Response.StatusCode.NO_EMAIL;
 
 @Service
 public class LogInService {
@@ -29,8 +31,10 @@ public class LogInService {
     @Transactional
     public ResponseEntity logIn(LogInDTO logInDTO) throws Exception {
         LogInResponseDTO logInResponseDTO = logInMapper.logIn(logInDTO);
-
         if(logInResponseDTO == null){
+            return new ResponseEntity(DefaultRes.res(NO_EMAIL, EMAIL_NOTFOUND), HttpStatus.OK);
+        }
+        else if (! logInResponseDTO.password.equals(logInDTO.getPassword())){
             return new ResponseEntity(DefaultRes.res(NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
         }
         else{
