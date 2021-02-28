@@ -4,10 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-//@AllArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class AreaValueDTO {
-    public Long code;
+public class TeamValueDTO {
     public String name;
+    public String location;
+    public String URL;
+    public String category;
+    public int leader;
 }
