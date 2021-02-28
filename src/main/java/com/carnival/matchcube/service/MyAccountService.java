@@ -12,9 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.carnival.matchcube.Response.ResponseMessage.DB_ERROR;
-import static com.carnival.matchcube.Response.ResponseMessage.LOGIN_FAIL;
-import static com.carnival.matchcube.Response.StatusCode.NO_CONTENT;
+import static com.carnival.matchcube.Response.ResponseMessage.*;
+import static com.carnival.matchcube.Response.StatusCode.*;
 
 @Service
 @Transactional
@@ -25,7 +24,7 @@ public class MyAccountService {
     public ResponseEntity myAccount(MyAccountDTO myAccountDTO) throws Exception {
         MyAccountValueDTO myAccountValueDTO = myAccountMapper.myAccount(myAccountDTO);
         if(myAccountValueDTO == null){
-            return new ResponseEntity(DefaultRes.res(NO_CONTENT, DB_ERROR), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
         }
         else{
             System.out.println(myAccountValueDTO);
