@@ -18,4 +18,9 @@ public class TeamController {
     public ResponseEntity makeTeam() throws Exception {
         return teamService.makeTeam();
     }
+
+    @PostMapping("-list")
+    public ResponseEntity getTeamList() throws Exception {
+        return teamService.getTeamList();
+    }
 }

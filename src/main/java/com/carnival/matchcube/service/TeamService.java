@@ -21,9 +21,14 @@ public class TeamService {
     private TeamMapper teamMapper;
 
     public ResponseEntity makeTeam() throws Exception {
+
+        return new ResponseEntity(DefaultRes.res(OK, MAKE_SUCCESS), HttpStatus.OK);
+
+    }
+
+    public ResponseEntity getTeamList() throws Exception {
         TeamValueDTO teamValueDTO = teamMapper.makeTeam();
 
-        return new ResponseEntity(DefaultRes.res(OK, LOGIN_FAIL, teamValueDTO), HttpStatus.OK);
-
+        return new ResponseEntity(DefaultRes.res(OK, SUCCESS, teamValueDTO), HttpStatus.OK);
     }
 }
