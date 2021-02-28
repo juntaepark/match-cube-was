@@ -10,6 +10,7 @@ public class ResponseMessage {
     public static final String DELETE_USER = "회원 탈퇴 성공";
     public static final String NOT_VALID_CITY_CODE = "유효한 시/도 코드가 아닙니다.";
     public static final String SUCCESS = "조회 성공";
+    public static final String MAKE_SUCCESS = "팀 생성 성공";
     public static final String INTERNAL_SERVER_ERROR = "서버 내부 에러";
     public static final String DB_ERROR = "데이터베이스 에러";
 }
