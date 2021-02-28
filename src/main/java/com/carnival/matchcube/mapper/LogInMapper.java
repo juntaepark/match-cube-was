@@ -1,7 +1,7 @@
 package com.carnival.matchcube.mapper;
 
-import com.carnival.matchcube.dto.SignInDTO;
-import com.carnival.matchcube.dto.SignInValueDTO;
+import com.carnival.matchcube.dto.LogInDTO;
+import com.carnival.matchcube.dto.LogInResponseDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface LogInMapper {
 
-    SignInValueDTO logIn(SignInDTO signInDTO) throws Exception ;
-
+    public LogInResponseDTO logIn(LogInDTO logInDTO) throws Exception ;
 }

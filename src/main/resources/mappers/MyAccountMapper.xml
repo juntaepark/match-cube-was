@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carnival.matchcube.mapper.MyAccountMapper">
+
+    <select id="myAccount" parameterType="com.carnival.matchcube.dto.MyAccountDTO" resultType="com.carnival.matchcube.dto.MyAccountValueDTO">
+        SELECT account_id,
+        nick_name,
+        name,
+        email_id,
+        birthday,
+        sex,
+        phone_number,
+        intro,
+        profile_image_url
+        FROM account
+        WHERE account_id=#{accountId};
+    </select>
+
+</mapper>
