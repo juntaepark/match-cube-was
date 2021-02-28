@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carnival.matchcube.mapper.SignUpMapper">
+
+    <select id="findByUserEmail" parameterType="String" resultType="String">
+        SELECT email_id
+        FROM   account
+        WHERE  email_id = #{emailId};
+    </select>
+
+    <insert id="insertAccount" parameterType="com.carnival.matchcube.dto.SignUpDTO">
+        INSERT INTO account
+        (email_id, password, name)
+        VALUES
+        (#{emailId}, #{password}, #{name});
+    </insert>
+
+</mapper>

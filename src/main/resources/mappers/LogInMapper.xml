@@ -3,14 +3,15 @@
 
 <mapper namespace="com.carnival.matchcube.mapper.LogInMapper">
 
-    <select id="logIn" parameterType="com.carnival.matchcube.dto.LogInDTO" resultType="com.carnival.matchcube.dto.LogInValueDTO">
-        SELECT account_id,
-               name AS name,
+    <select id="logIn" parameterType="com.carnival.matchcube.dto.LogInDTO" resultType="com.carnival.matchcube.dto.LogInResponseDTO">
+        SELECT email_id,
+               password,
+               account_id,
+               name,
                nick_name,
                status
         FROM   account
-        WHERE  email_id = #{emailId}
-        AND    password = #{password};
+        WHERE  email_id = #{emailId};
     </select>
 
 </mapper>
