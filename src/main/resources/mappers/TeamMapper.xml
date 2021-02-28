@@ -3,7 +3,15 @@
 
 <mapper namespace="com.carnival.matchcube.mapper.TeamMapper">
 
-    <select id="makeTeam" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValidDTO">
+    <select id="isValidTeamName">
+        SELECT EXISTS(SELECT * FROM team WHERE team_name = #{name}) as exist;
+    </select>
+
+    <select id="makeTeam" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+
+    </select>
+
+    <select id="getTeamList" resultType="com.carnival.matchcube.dto.TeamValueDTO">
 
     </select>
 
