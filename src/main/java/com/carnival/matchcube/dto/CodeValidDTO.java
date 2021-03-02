@@ -7,8 +7,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class AreaCodeValidDTO {
+public class CodeValidDTO {
     public int exist;
 
-    public AreaCodeValidDTO() { }
+    public CodeValidDTO() { }
 }

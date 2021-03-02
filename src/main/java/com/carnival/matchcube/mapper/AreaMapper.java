@@ -1,6 +1,6 @@
 package com.carnival.matchcube.mapper;
 
-import com.carnival.matchcube.dto.AreaCodeValidDTO;
+import com.carnival.matchcube.dto.CodeValidDTO;
 import com.carnival.matchcube.dto.AreaDTO;
 import com.carnival.matchcube.dto.AreaValueDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,5 +13,6 @@ import java.util.List;
 public interface AreaMapper {
     List<AreaValueDTO > getArea() throws Exception; //시도 받아오기
     List<AreaValueDTO> getUnderArea(AreaDTO areaDTO) throws Exception; //areaDTO로 시/도 code 받아서 해당 시/도의 시/군/구 받기
-    AreaCodeValidDTO getValidArea(AreaDTO areaDTO) throws Exception; //시/도code 유효성 검사
+    CodeValidDTO getValidArea(AreaDTO areaDTO) throws Exception; //시/도code 유효성 검사
+    AreaValueDTO getCityName(AreaDTO areaDTO) throws Exception; //시/도의 이름 리턴
 }

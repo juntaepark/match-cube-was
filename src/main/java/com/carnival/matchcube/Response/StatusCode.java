@@ -12,6 +12,7 @@ public class StatusCode {
     public static final int NOT_FOUND = 404;
     public static final int SIGN_IN_FAIL = 405;
     public static final int NOT_VALID_AREA_CODE = 406;
+    public static final int DUPLICATE_TEAM_NAME = 408;
     public static final int NOT_VALID_ACCOUNT_ID = 407;
     public static final int NO_HAVE_TEAMS = 409;
     public static final int INTERNAL_SERVER_ERROR = 500;
