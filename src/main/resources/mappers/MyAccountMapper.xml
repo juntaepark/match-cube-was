@@ -17,4 +17,18 @@
         WHERE account_id=#{accountId};
     </select>
 
+    <select id="myTeam" parameterType="com.carnival.matchcube.dto.MyAccountDTO" resultType="com.carnival.matchcube.dto.MyTeamValueDTO">
+        SELECT relation_id,
+        team_id,
+        account_id,
+        link_number,
+        status,
+        is_accept,
+        register_at
+        FROM team_user
+        WHERE account_id=#{accountId}
+        AND status=1
+        AND is_accept!=0;
+    </select>
+
 </mapper>
