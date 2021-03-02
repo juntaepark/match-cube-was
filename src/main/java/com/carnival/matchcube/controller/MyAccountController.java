@@ -20,4 +20,9 @@ public class MyAccountController {
         MyAccountDTO myAccountDTO = new MyAccountDTO(accountId);
         return myAccountService.myAccount(myAccountDTO);
     }
+    @GetMapping("/{accountId}/teams")
+    public ResponseEntity myTeam(@PathVariable("accountId") Long accountId) throws Exception {
+        MyAccountDTO myAccountDTO = new MyAccountDTO(accountId);
+        return myAccountService.myTeam(myAccountDTO);
+    }
 }
