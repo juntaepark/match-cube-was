@@ -2,8 +2,8 @@ package com.carnival.matchcube.dto;
 
 public class TeamDTO {
     public String name;
-    public String location;
+    public int location;
     public String URL;
-    public String category;
+    public int category;
     public int leader;
 }

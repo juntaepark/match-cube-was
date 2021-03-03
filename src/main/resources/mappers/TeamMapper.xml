@@ -3,12 +3,13 @@
 
 <mapper namespace="com.carnival.matchcube.mapper.TeamMapper">
 
-    <select id="isValidTeamName">
+    <select id="isDuplicateTeamName" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.CodeValidDTO">
         SELECT EXISTS(SELECT * FROM team WHERE team_name = #{name}) as exist;
     </select>
 
     <select id="makeTeam" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
-
+        INSERT INTO team (team_name, team_location, team_image_url, category_id, team_leader_id)
+        VALUES (#{name}, #{location}, #{URL}, #{category}, #{leader});
     </select>
 
     <select id="getTeamList" resultType="com.carnival.matchcube.dto.TeamValueDTO">
