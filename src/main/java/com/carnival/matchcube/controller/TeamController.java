@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.carnival.matchcube.dto.TeamShowDTO;
+import org.springframework.web.bind.annotation.*;
+
+
 @RestController
 @RequestMapping("/team")
 public class TeamController {
@@ -21,5 +25,9 @@ public class TeamController {
     @GetMapping("-list")
     public ResponseEntity getTeamList() throws Exception {
         return teamService.getTeamList();
+    }
+    @GetMapping
+    public ResponseEntity showTeam(TeamShowDTO teamShowDTO) throws Exception {
+        return teamService.showTeam(teamShowDTO);
     }
 }
