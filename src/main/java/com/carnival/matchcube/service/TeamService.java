@@ -1,11 +1,11 @@
 package com.carnival.matchcube.service;
 
 import com.carnival.matchcube.Response.DefaultRes;
-<<<<<<< HEAD
+
 import com.carnival.matchcube.dto.TeamDTO;
-=======
+
 import com.carnival.matchcube.dto.TeamShowDTO;
->>>>>>> jin
+
 import com.carnival.matchcube.dto.TeamValueDTO;
 import com.carnival.matchcube.mapper.TeamMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,32 +27,26 @@ public class TeamService {
     @Autowired
     private TeamMapper teamMapper;
 
-<<<<<<< HEAD
+
     public ResponseEntity makeTeam(TeamDTO teamDTO) throws Exception {
         String name = teamDTO.name;
-=======
-    @Transactional
-    public ResponseEntity makeTeam() throws Exception {
-        TeamValueDTO teamValueDTO = teamMapper.makeTeam();
->>>>>>> jin
 
-        if(!teamMapper.isValidTeamName(name)) { //이미 같은 팀명이 있는 경우
+        if (!teamMapper.isValidTeamName(name)) { //이미 같은 팀명이 있는 경우
             return new ResponseEntity(DefaultRes.res(DUPLICATE_TEAM_NAME, DUPLICATED_TEAM_NAME), HttpStatus.OK);
-        }
-        else {
+        } else {
             teamMapper.makeTeam(teamDTO);
             return new ResponseEntity(DefaultRes.res(OK, MAKE_SUCCESS), HttpStatus.OK);
         }
 
     }
 
-<<<<<<< HEAD
+
     public ResponseEntity getTeamList() throws Exception {
         TeamValueDTO teamValueDTO = teamMapper.getTeamList();
 
         return new ResponseEntity(DefaultRes.res(OK, SUCCESS, teamValueDTO), HttpStatus.OK);
-=======
-    @Transactional
+    }
+
     public ResponseEntity showTeam(TeamShowDTO teamShowDTO) throws Exception {
         List<TeamValueDTO> teamValueDTO = teamMapper.showTeam(teamShowDTO);
         if (teamValueDTO.isEmpty()) {
@@ -60,6 +54,6 @@ public class TeamService {
         } else {
             return new ResponseEntity(DefaultRes.res(OK, TEAM_SHOW_SUCCESS, teamValueDTO), HttpStatus.OK);
         }
->>>>>>> jin
+
     }
 }
