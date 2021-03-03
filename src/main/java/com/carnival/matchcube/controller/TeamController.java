@@ -4,10 +4,7 @@ import com.carnival.matchcube.dto.TeamDTO;
 import com.carnival.matchcube.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.carnival.matchcube.dto.TeamShowDTO;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +22,7 @@ public class TeamController {
         return teamService.makeTeam(teamDTO);
     }
 
-    @PostMapping("-list")
+    @GetMapping("-list")
     public ResponseEntity getTeamList() throws Exception {
         return teamService.getTeamList();
     }

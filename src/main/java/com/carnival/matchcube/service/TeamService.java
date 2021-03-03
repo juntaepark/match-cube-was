@@ -2,6 +2,8 @@ package com.carnival.matchcube.service;
 
 import com.carnival.matchcube.Response.DefaultRes;
 
+
+import com.carnival.matchcube.dto.CodeValidDTO;
 import com.carnival.matchcube.dto.TeamDTO;
 
 import com.carnival.matchcube.dto.TeamShowDTO;
@@ -30,8 +32,12 @@ public class TeamService {
 
     public ResponseEntity makeTeam(TeamDTO teamDTO) throws Exception {
         String name = teamDTO.name;
+        CodeValidDTO isValidCode = teamMapper.isDuplicateTeamName(teamDTO.name);
 
-        if (!teamMapper.isValidTeamName(name)) { //이미 같은 팀명이 있는 경우
+
+//        if (!teamMapper.isDuplicateTeamName(name)) { //이미 같은 팀명이 있는 경우
+
+        if (isValidCode.exist == 1) { //이미 같은 팀명이 있는 경우
             return new ResponseEntity(DefaultRes.res(DUPLICATE_TEAM_NAME, DUPLICATED_TEAM_NAME), HttpStatus.OK);
         } else {
             teamMapper.makeTeam(teamDTO);
@@ -39,6 +45,7 @@ public class TeamService {
         }
 
     }
+//    }
 
 
     public ResponseEntity getTeamList() throws Exception {
