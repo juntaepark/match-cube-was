@@ -3,12 +3,22 @@
 
 <mapper namespace="com.carnival.matchcube.mapper.TeamMapper">
 
+<<<<<<< HEAD
     <select id="isValidTeamName">
         SELECT EXISTS(SELECT * FROM team WHERE team_name = #{name}) as exist;
     </select>
 
     <select id="makeTeam" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+=======
+<!--    <select id="makeTeam" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">-->
+>>>>>>> jin
 
+<!--    </select>-->
+    <select id="showTeam" parameterType="com.carnival.matchcube.dto.TeamShowDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+        SELECT *
+        FROM team
+        WHERE category_id=#{categoryId}
+        AND team_location=#{teamLocation};
     </select>
 
     <select id="getTeamList" resultType="com.carnival.matchcube.dto.TeamValueDTO">
