@@ -1,7 +1,6 @@
 package com.carnival.matchcube.service;
 
 import com.carnival.matchcube.Response.DefaultRes;
-import com.carnival.matchcube.Response.isSuccess;
 import com.carnival.matchcube.Response.ResponseMessage;
 import com.carnival.matchcube.Response.StatusCode;
 import com.carnival.matchcube.dto.MyAccountDTO;
@@ -28,10 +27,10 @@ public class MyAccountService {
     public ResponseEntity myAccount(MyAccountDTO myAccountDTO) throws Exception {
         MyAccountValueDTO myAccountValueDTO = myAccountMapper.myAccount(myAccountDTO);
         if (myAccountValueDTO == null) {
-            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
         } else {
             System.out.println(myAccountValueDTO);
-            return new ResponseEntity(DefaultRes.res(isSuccess.SUCCESS, StatusCode.OK, ResponseMessage.SUCCESS, myAccountValueDTO), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.SUCCESS, myAccountValueDTO), HttpStatus.OK);
         }
     }
 
@@ -40,14 +39,14 @@ public class MyAccountService {
         List<MyTeamValueDTO> myTeamValueDTO = myAccountMapper.myTeam(myAccountDTO);
         MyAccountValueDTO myAccountValueDTO = myAccountMapper.myAccount(myAccountDTO);
         if (myAccountValueDTO == null) {
-            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
         }
         else if (myTeamValueDTO.isEmpty()){
-            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, NO_HAVE_TEAMS, NO_TEAM_USER), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(NO_HAVE_TEAMS, NO_TEAM_USER), HttpStatus.OK);
         }
         else {
             System.out.println(myTeamValueDTO);
-            return new ResponseEntity(DefaultRes.res(isSuccess.SUCCESS, StatusCode.OK, ResponseMessage.SUCCESS, myTeamValueDTO), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.SUCCESS, myTeamValueDTO), HttpStatus.OK);
         }
     }
 }

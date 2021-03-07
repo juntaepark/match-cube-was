@@ -3,7 +3,6 @@ package com.carnival.matchcube.service;
 import com.carnival.matchcube.Response.DefaultRes;
 import com.carnival.matchcube.Response.ResponseMessage;
 import com.carnival.matchcube.Response.StatusCode;
-import com.carnival.matchcube.Response.isSuccess;
 import com.carnival.matchcube.dto.KakaoOauthDTO;
 import com.carnival.matchcube.dto.LogInDTO;
 import com.carnival.matchcube.dto.LogInResponseDTO;
@@ -33,14 +32,14 @@ public class LogInService {
     public ResponseEntity logIn(LogInDTO logInDTO) throws Exception {
         LogInResponseDTO logInResponseDTO = logInMapper.logIn(logInDTO);
         if(logInResponseDTO == null){
-            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, NO_EMAIL, EMAIL_NOTFOUND), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(NO_EMAIL, EMAIL_NOTFOUND), HttpStatus.OK);
         }
         else if (! logInResponseDTO.password.equals(logInDTO.getPassword())){
-            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
         }
         else{
             System.out.println(logInResponseDTO);
-            return new ResponseEntity(DefaultRes.res(isSuccess.SUCCESS, StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, logInResponseDTO), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, logInResponseDTO), HttpStatus.OK);
         }
     }
 
@@ -81,11 +80,11 @@ public class LogInService {
         }
 
         if(kakaoOauthToken == null){
-            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
         }
         else{
             System.out.println(kakaoOauthToken);
-            return new ResponseEntity(DefaultRes.res(isSuccess.SUCCESS, StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, kakaoOauthToken), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.LOGIN_SUCCESS, kakaoOauthToken), HttpStatus.OK);
         }
 
         // Access Token으로 Kakao Resource Server에서 사용자의 정보 가져오기

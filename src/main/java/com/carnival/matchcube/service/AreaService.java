@@ -1,7 +1,6 @@
 package com.carnival.matchcube.service;
 
 import com.carnival.matchcube.Response.DefaultRes;
-import com.carnival.matchcube.Response.isSuccess;
 import com.carnival.matchcube.dto.CodeValidDTO;
 import com.carnival.matchcube.dto.AreaDTO;
 import com.carnival.matchcube.dto.AreaValueDTO;
@@ -31,7 +30,7 @@ public class AreaService {
     public ResponseEntity getArea() throws Exception { //위치필터 : 시/도 조회
         List<AreaValueDTO> areaValueDTO = areaMapper.getArea();
 
-        return new ResponseEntity(DefaultRes.res(isSuccess.SUCCESS, OK, SUCCESS, areaValueDTO), HttpStatus.OK);
+        return new ResponseEntity(DefaultRes.res(OK, SUCCESS, areaValueDTO), HttpStatus.OK);
     }
 
     public ResponseEntity getUnderArea(AreaDTO areaDTO) throws Exception { //위치필터 : 시/도 code로 소속 시/군/구 조회
@@ -39,11 +38,11 @@ public class AreaService {
         CodeValidDTO isValidCode = areaMapper.getValidArea(areaDTO);
 
         if(isValidCode.exist == 0) //유효한 시/도 code가 아닐 경우
-            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, NOT_VALID_AREA_CODE, NOT_VALID_CITY_CODE), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(NOT_VALID_AREA_CODE, NOT_VALID_CITY_CODE), HttpStatus.OK);
 
         else {
             AreaValueDTO cityName = areaMapper.getCityName(areaDTO);
-            return new ResponseEntity(DefaultRes.res(isSuccess.SUCCESS, OK, cityName.name + " " + SUCCESS, areaValueDTO), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(OK, cityName.name + " " + SUCCESS, areaValueDTO), HttpStatus.OK);
         }
     }
 }
