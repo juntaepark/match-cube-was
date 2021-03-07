@@ -8,9 +8,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TeamDTO {
-    public String name;
-    public int location;
     public String URL;
     public int category;
+    public String name;
+    public int area;
+    public int uniform;
     public int leader;
+    public int vehicle;
+    public int fee;
+    public String period;
 }

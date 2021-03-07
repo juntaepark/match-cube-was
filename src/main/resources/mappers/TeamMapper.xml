@@ -4,12 +4,34 @@
 <mapper namespace="com.carnival.matchcube.mapper.TeamMapper">
 
     <select id="isDuplicateTeamName" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.CodeValidDTO">
-        SELECT EXISTS(SELECT * FROM team WHERE team_name = #{name}) as exist;
+        SELECT EXISTS(SELECT * FROM team_ex WHERE team_name = #{name}) as exist;
+    </select>
+
+    <select id="insertImage" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+        INSERT INTO team_image(team_id, team_image_url) VALUES (((SELECT MAX(team_id) FROM team_ex) + 1), #{URL});
     </select>
 
     <select id="makeTeam" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
-        INSERT INTO team (team_name, team_location, team_image_url, category_id, team_leader_id)
-        VALUES (#{name}, #{location}, #{URL}, #{category}, #{leader});
+        INSERT INTO team_ex(category_id, team_name, team_area, uniform, team_leader_id, team_vehicle,
+                            membership_fee, membership_per, representative_image_id)
+        VALUES(#{category}, #{name}, #{area}, #{uniform}, #{leader}, #{vehicle}, #{fee}, #{period},
+               (SELECT image_id
+                FROM team_image
+                WHERE team_image_url = #{URL})
+                );
+    </select>
+
+    <select id="isMatchedTeamId" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.ValidDTO">
+        SELECT IFNULL((SELECT IF(ti.image_id = te.representative_image_id, 1, 0)
+                       FROM team_ex AS te
+                       LEFT JOIN team_image AS ti ON ti.team_id = te.team_id
+                       WHERE ti.team_image_url = #{URL}), 0) AS isMatched;
+    </select>
+
+    <select id="adjustTeamId" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+        UPDATE team_image INNER JOIN team_ex ON team_image.image_id = team_ex.representative_image_id
+            SET team_image.team_id = team_ex.team_id
+        WHERE team_image.team_image_url = #{URL};
     </select>
 
     <select id="showTeam" parameterType="com.carnival.matchcube.dto.TeamShowDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
