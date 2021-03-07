@@ -2,6 +2,7 @@ package com.carnival.matchcube.service;
 
 import com.carnival.matchcube.Response.DefaultRes;
 import com.carnival.matchcube.Response.StatusCode;
+import com.carnival.matchcube.Response.isSuccess;
 import com.carnival.matchcube.dto.LogInResponseDTO;
 import com.carnival.matchcube.dto.SignUpDTO;
 import com.carnival.matchcube.mapper.SignUpMapper;
@@ -24,14 +25,14 @@ public class SignUpService {
     public ResponseEntity signUp(SignUpDTO signUpDTO) throws Exception {
         String email = verifyDuplicatedUser(signUpDTO.getEmailId());
         if( email != null){
-            return new ResponseEntity(DefaultRes.res(DUPLICATE_EMAIL, SIGNUP_FAIL), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, DUPLICATE_EMAIL, SIGNUP_FAIL), HttpStatus.OK);
         }
 
         if(1 == signUpMapper.insertAccount(signUpDTO)){
-            return new ResponseEntity(DefaultRes.res(StatusCode.OK, CREATED_USER), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(isSuccess.SUCCESS, StatusCode.OK, CREATED_USER), HttpStatus.OK);
         }
         else{
-            return new ResponseEntity(DefaultRes.res(SIGN_IN_FAIL, SIGNUP_FAIL), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, SIGN_IN_FAIL, SIGNUP_FAIL), HttpStatus.OK);
         }
     }
 

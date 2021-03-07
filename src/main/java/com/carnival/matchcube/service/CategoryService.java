@@ -1,6 +1,7 @@
 package com.carnival.matchcube.service;
 
 import com.carnival.matchcube.Response.DefaultRes;
+import com.carnival.matchcube.Response.isSuccess;
 import com.carnival.matchcube.Response.ResponseMessage;
 import com.carnival.matchcube.Response.StatusCode;
 import com.carnival.matchcube.dto.CategoryValueDTO;
@@ -25,10 +26,10 @@ public class CategoryService {
     public ResponseEntity category() throws Exception {
         List<CategoryValueDTO> categoryValueDTO = categoryMapper.category();
         if(categoryValueDTO == null){
-            return new ResponseEntity(DefaultRes.res(NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(isSuccess.FAIL, NO_CONTENT, LOGIN_FAIL), HttpStatus.OK);
         }
         else{
-            return new ResponseEntity(DefaultRes.res(StatusCode.OK, ResponseMessage.SUCCESS, categoryValueDTO), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(isSuccess.SUCCESS, StatusCode.OK, ResponseMessage.SUCCESS, categoryValueDTO), HttpStatus.OK);
         }
     }
 }
