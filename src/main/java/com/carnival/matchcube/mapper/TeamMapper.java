@@ -1,7 +1,5 @@
 package com.carnival.matchcube.mapper;
 
-
-
 import com.carnival.matchcube.dto.CodeValidDTO;
 
 import com.carnival.matchcube.dto.TeamDTO;

@@ -11,11 +11,12 @@
         INSERT INTO team (team_name, team_location, team_image_url, category_id, team_leader_id)
         VALUES (#{name}, #{location}, #{URL}, #{category}, #{leader});
     </select>
+
     <select id="showTeam" parameterType="com.carnival.matchcube.dto.TeamShowDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
         SELECT *
         FROM team
-        WHERE category_id=#{categoryId}
-        AND team_location=#{teamLocation};
+        WHERE category_id = #{categoryId}
+        AND team_location = #{teamLocation};
     </select>
 
     <select id="getTeamList" resultType="com.carnival.matchcube.dto.TeamValueDTO">

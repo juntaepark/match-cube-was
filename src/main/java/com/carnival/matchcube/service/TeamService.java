@@ -22,7 +22,6 @@ import static com.carnival.matchcube.Response.ResponseMessage.*;
 import static com.carnival.matchcube.Response.StatusCode.*;
 
 @Service
-
 public class TeamService {
     Object StatusCode = 408;
 
@@ -34,9 +33,6 @@ public class TeamService {
         String name = teamDTO.name;
         CodeValidDTO isValidCode = teamMapper.isDuplicateTeamName(teamDTO.name);
 
-
-//        if (!teamMapper.isDuplicateTeamName(name)) { //이미 같은 팀명이 있는 경우
-
         if (isValidCode.exist == 1) { //이미 같은 팀명이 있는 경우
             return new ResponseEntity(DefaultRes.res(DUPLICATE_TEAM_NAME, DUPLICATED_TEAM_NAME), HttpStatus.OK);
         } else {
@@ -45,8 +41,6 @@ public class TeamService {
         }
 
     }
-//    }
-
 
     public ResponseEntity getTeamList() throws Exception {
         TeamValueDTO teamValueDTO = teamMapper.getTeamList();
