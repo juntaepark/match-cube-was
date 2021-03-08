@@ -25,7 +25,7 @@ public class MyAccountService {
 
     @Transactional
     public ResponseEntity myAccount(MyAccountDTO myAccountDTO) throws Exception {
-        MyAccountValueDTO myAccountValueDTO = myAccountMapper.myAccount(myAccountDTO);
+        List <MyAccountValueDTO> myAccountValueDTO= myAccountMapper.myAccount(myAccountDTO);
         if (myAccountValueDTO == null) {
             return new ResponseEntity(DefaultRes.res(NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
         } else {
@@ -37,7 +37,7 @@ public class MyAccountService {
     @Transactional
     public ResponseEntity myTeam(MyAccountDTO myAccountDTO) throws Exception {
         List<MyTeamValueDTO> myTeamValueDTO = myAccountMapper.myTeam(myAccountDTO);
-        MyAccountValueDTO myAccountValueDTO = myAccountMapper.myAccount(myAccountDTO);
+        List <MyAccountValueDTO> myAccountValueDTO = myAccountMapper.myAccount(myAccountDTO);
         if (myAccountValueDTO == null) {
             return new ResponseEntity(DefaultRes.res(NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
         }

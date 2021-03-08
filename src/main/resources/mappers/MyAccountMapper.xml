@@ -4,17 +4,13 @@
 <mapper namespace="com.carnival.matchcube.mapper.MyAccountMapper">
 
     <select id="myAccount" parameterType="com.carnival.matchcube.dto.MyAccountDTO" resultType="com.carnival.matchcube.dto.MyAccountValueDTO">
-        SELECT account_id,
-        nick_name,
-        name,
-        email_id,
-        birthday,
-        sex,
-        phone_number,
-        intro,
-        profile_image_url
-        FROM account
-        WHERE account_id=#{accountId};
+        SELECT ae.account_id, nick_name, name, email_id, tm.team_id, ti.team_image_url,
+        IF(te.team_leader_id = ae.account_id, '팀장', '팀원') AS isTeamLeader
+        FROM account_ex AS ae
+        LEFT JOIN team_member AS tm on tm.account_id = ae.account_id
+        LEFT JOIN team_ex AS te on te.team_id = tm.team_id
+        LEFT JOIN team_image AS ti on ti.team_id = te.team_id
+        WHERE ae.account_id = #{accountId};
     </select>
 
     <select id="myTeam" parameterType="com.carnival.matchcube.dto.MyAccountDTO" resultType="com.carnival.matchcube.dto.MyTeamValueDTO">

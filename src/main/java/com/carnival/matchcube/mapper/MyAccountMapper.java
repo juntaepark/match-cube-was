@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 @Mapper
 public interface MyAccountMapper {
-    MyAccountValueDTO myAccount(MyAccountDTO myAccountDTO) throws Exception ;
+    public List<MyAccountValueDTO> myAccount(MyAccountDTO myAccountDTO) throws Exception ;
     public List<MyTeamValueDTO> myTeam(MyAccountDTO myAccountDTO) throws Exception ;
 }
