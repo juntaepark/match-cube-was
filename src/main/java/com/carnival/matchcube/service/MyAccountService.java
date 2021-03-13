@@ -38,7 +38,7 @@ public class MyAccountService {
     public ResponseEntity myTeam(MyAccountDTO myAccountDTO) throws Exception {
         List<MyTeamValueDTO> myTeamValueDTO = myAccountMapper.myTeam(myAccountDTO);
         List <MyAccountValueDTO> myAccountValueDTO = myAccountMapper.myAccount(myAccountDTO);
-        if (myAccountValueDTO == null) {
+        if (myAccountValueDTO.isEmpty()) {
             return new ResponseEntity(DefaultRes.res(NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
         }
         else if (myTeamValueDTO.isEmpty()){
