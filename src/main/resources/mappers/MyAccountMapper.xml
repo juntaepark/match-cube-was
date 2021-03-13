@@ -14,17 +14,21 @@
     </select>
 
     <select id="myTeam" parameterType="com.carnival.matchcube.dto.MyAccountDTO" resultType="com.carnival.matchcube.dto.MyTeamValueDTO">
-        SELECT relation_id,
-        team_id,
-        account_id,
-        link_number,
-        status,
-        is_accept,
-        register_at
-        FROM team_user
-        WHERE account_id=#{accountId}
-        AND status=1
-        AND is_accept!=0;
+        SELECT tm.team_id, te.team_name, ti.team_image_url,
+        COUNT(tm.team_id) AS member_count,
+        ROUND(AVG(FLOOR((CAST(REPLACE(CURRENT_DATE,'-','') AS UNSIGNED) - CAST(REPLACE(ae.birthday,'-','') AS UNSIGNED)) / 10000)+1))
+        AS average_age, COUNT(CASE WHEN p.was_athlete=1 THEN 1 END) AS athlete_count
+        FROM team_member tm
+        INNER JOIN team_ex te ON te.team_id = tm.team_id
+        INNER JOIN (
+        SELECT team_id, account_id
+        FROM team_member
+        WHERE account_id=#{accountId} AND is_accept='Y' AND status=1) t ON tm.team_id=t.team_id
+        INNER JOIN team_image ti ON te.team_id = ti.team_id
+        INNER JOIN account_ex ae ON tm.account_id=ae.account_id
+        LEFT JOIN player p on tm.account_id = p.account_id
+        WHERE ti.image_id=te.representative_image_id
+        GROUP BY tm.team_id;
     </select>
 
 </mapper>
