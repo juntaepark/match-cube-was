@@ -12,6 +12,7 @@ public class TeamDTO {
     public int category;
     public String name;
     public String area;
+    public String introduction;
     public int uniform;
     public int leader;
     public int vehicle;

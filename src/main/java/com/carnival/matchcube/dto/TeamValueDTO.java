@@ -10,13 +10,14 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 public class TeamValueDTO {
-    public Integer teamId;
+    public int teamId;
     public String status;
     public String teamName;
     public String teamLocation;
+    public String introduction;
     public String team_image_url;
-    public Integer categoryId;
-    public Integer teamLeaderId;
+    public int categoryId;
+    public int teamLeaderId;
     public String wantPlayer;
     public String wantHiring;
     public String wantMatch;
