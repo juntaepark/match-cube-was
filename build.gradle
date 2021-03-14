@@ -24,12 +24,15 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
 	// DB 연동
 	compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.16'
 	compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.3'
 
+	// S3
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'
 	// oauth, security
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 //	implementation 'javax.xml.bind:jaxb-api'
