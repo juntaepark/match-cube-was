@@ -55,10 +55,10 @@ public class MyAccountService {
     @Transactional
     public ResponseEntity myUpdate(MyUpdateDTO myUpdateDTO) throws Exception{
         if (0 == myAccountMapper.myUpdate(myUpdateDTO)) {
-            return new ResponseEntity(NoDataRes.noDataRes(NOT_VALID_ACCOUNT_ID, NOT_EXIST_USER), HttpStatus.OK);
+            return new ResponseEntity(NoDataRes.noDataRes(CANNOT_UPDATE, NOT_UPDATED), HttpStatus.OK);
         }
         else {
-            return new ResponseEntity(DefaultRes.res(StatusCode.OK, UPDATE_USER), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(CREATED, UPDATE_USER), HttpStatus.OK);
         }
 
     }

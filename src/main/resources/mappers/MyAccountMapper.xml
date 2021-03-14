@@ -34,7 +34,8 @@
     <update id="myUpdate" parameterType="com.carnival.matchcube.dto.MyUpdateDTO">
         UPDATE account
         SET nick_name=#{nickName}
-        WHERE account_id=#{accountId};
+        WHERE account_id=#{accountId}
+        AND nick_name!=#{nickName};
     </update>
 
 </mapper>

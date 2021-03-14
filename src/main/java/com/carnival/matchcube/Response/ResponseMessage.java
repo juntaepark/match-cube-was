@@ -9,6 +9,7 @@ public class ResponseMessage {
     public static final String NOT_FOUND_USER = "회원을 찾을 수 없습니다.";
     public static final String CREATED_USER = "회원 가입 성공";
     public static final String UPDATE_USER = "회원 정보 수정 성공";
+    public static final String NOT_UPDATED = "정보를 수정할 수 없습니다";
     public static final String DELETE_USER = "회원 탈퇴 성공";
     public static final String NOT_VALID_CITY_CODE = "유효한 시/도 코드가 아닙니다.";
     public static final String DUPLICATED_TEAM_NAME = "중복된 팀명입니다.";
