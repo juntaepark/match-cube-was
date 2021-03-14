@@ -27,7 +27,7 @@ public class TeamController {
         return teamService.isDuplicateName(teamDTO);
     }
 
-    @GetMapping("")
+    @GetMapping("/my")
     public ResponseEntity getMoreMyTeamInfo(@PathVariable int teamId) throws Exception { //나의 팀 상세화면 정보 조회
         return teamService.getMoreMyTeamInfo(teamId);
     }
