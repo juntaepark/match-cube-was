@@ -6,9 +6,9 @@
     <select id="myAccount" parameterType="com.carnival.matchcube.dto.MyAccountDTO" resultType="com.carnival.matchcube.dto.MyAccountValueDTO">
         SELECT ae.account_id, nick_name, name, email_id, tm.team_id, ti.team_image_url,
         IF(te.team_leader_id = ae.account_id, '팀장', '팀원') AS isTeamLeader
-        FROM account_ex AS ae
+        FROM account AS ae
         LEFT JOIN team_member AS tm on tm.account_id = ae.account_id
-        LEFT JOIN team_ex AS te on te.team_id = tm.team_id
+        LEFT JOIN team AS te on te.team_id = tm.team_id
         LEFT JOIN team_image AS ti on ti.team_id = te.team_id
         WHERE ae.account_id = #{accountId};
     </select>
@@ -19,13 +19,13 @@
         ROUND(AVG(FLOOR((CAST(REPLACE(CURRENT_DATE,'-','') AS UNSIGNED) - CAST(REPLACE(ae.birthday,'-','') AS UNSIGNED)) / 10000)+1))
         AS average_age, COUNT(CASE WHEN p.was_athlete=1 THEN 1 END) AS athlete_count
         FROM team_member tm
-        INNER JOIN team_ex te ON te.team_id = tm.team_id
+        INNER JOIN team te ON te.team_id = tm.team_id
         INNER JOIN (
         SELECT team_id, account_id
         FROM team_member
         WHERE account_id=#{accountId} AND is_accept='Y' AND status=1) t ON tm.team_id=t.team_id
         INNER JOIN team_image ti ON te.team_id = ti.team_id
-        INNER JOIN account_ex ae ON tm.account_id=ae.account_id
+        INNER JOIN account ae ON tm.account_id=ae.account_id
         LEFT JOIN player p on tm.account_id = p.account_id
         WHERE ti.image_id=te.representative_image_id
         GROUP BY tm.team_id;
