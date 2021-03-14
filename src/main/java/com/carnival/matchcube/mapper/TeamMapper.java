@@ -10,8 +10,8 @@ import java.util.List;
 @Repository
 @Mapper
 public interface TeamMapper {
-    CodeValidDTO isDuplicateTeamName(String name) throws Exception;
-    ValidDTO isSameURL(String URL) throws Exception;
+    ValidDTO isDuplicateTeamName(String name) throws Exception;
+    ValidDTO isSameImage(String URL) throws Exception;
     TeamValueDTO insertImage(String URL) throws Exception;
     TeamValueDTO makeTeam(TeamDTO teamDTO) throws Exception;
     ValidDTO isMatchedTeamId(String URL) throws Exception;

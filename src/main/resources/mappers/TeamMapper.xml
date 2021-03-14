@@ -3,8 +3,12 @@
 
 <mapper namespace="com.carnival.matchcube.mapper.TeamMapper">
 
-    <select id="isDuplicateTeamName" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.CodeValidDTO">
+    <select id="isDuplicateTeamName" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.ValidDTO">
         SELECT EXISTS(SELECT * FROM team WHERE team_name = #{name}) as exist;
+    </select>
+
+    <select id="isSameImage" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.ValidDTO">
+        SELECT EXISTS(SELECT * FROM team_image WHERE team_image_url = #{URL}) as exist;
     </select>
 
     <select id="insertImage" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
