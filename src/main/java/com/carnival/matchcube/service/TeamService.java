@@ -25,10 +25,17 @@ public class TeamService {
     @Transactional
     public ResponseEntity makeTeam(TeamDTO teamDTO) throws Exception {
         CodeValidDTO isValidCode = teamMapper.isDuplicateTeamName(teamDTO.name);
+        ValidDTO sameURL = teamMapper.isSameURL(teamDTO.URL);
 
         if (isValidCode.exist == 1) { //이미 같은 팀명이 있는 경우
             return new ResponseEntity(DefaultRes.res(DUPLICATE_TEAM_NAME, DUPLICATED_TEAM_NAME), HttpStatus.OK);
-        } else {
+        }
+
+        else if (sameURL.isMatched == 1) { //같은 사진으로 다른 팀을 등록하려는 경우
+            return new ResponseEntity(DefaultRes.res(DUPLICATED_TEAM_IMAGE, DUPLICATED_TEAM_IMAGE_URL), HttpStatus.OK);
+        }
+
+        else {
             teamMapper.insertImage(teamDTO.URL);
             teamMapper.makeTeam(teamDTO);
             ValidDTO isMatched = teamMapper.isMatchedTeamId(teamDTO.URL); //이게 Null이 나오는 문제가 있어!!!
@@ -44,8 +51,8 @@ public class TeamService {
 
     }
 
-    public ResponseEntity getTeamList() throws Exception {
-        TeamValueDTO teamValueDTO = teamMapper.getTeamList();
+    public ResponseEntity editTeamInfo() throws Exception {
+        TeamValueDTO teamValueDTO = teamMapper.editTeamInfo();
 
         return new ResponseEntity(DefaultRes.res(OK, SUCCESS, teamValueDTO), HttpStatus.OK);
     }

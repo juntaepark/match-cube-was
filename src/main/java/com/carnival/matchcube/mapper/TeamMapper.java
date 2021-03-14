@@ -11,10 +11,11 @@ import java.util.List;
 @Mapper
 public interface TeamMapper {
     CodeValidDTO isDuplicateTeamName(String name) throws Exception;
+    ValidDTO isSameURL(String URL) throws Exception;
     TeamValueDTO insertImage(String URL) throws Exception;
     TeamValueDTO makeTeam(TeamDTO teamDTO) throws Exception;
     ValidDTO isMatchedTeamId(String URL) throws Exception;
     TeamValueDTO adjustTeamId(String URL) throws Exception;
-    TeamValueDTO getTeamList() throws Exception;
-    public List<TeamValueDTO> showTeam(TeamShowDTO teamShowDTO) throws Exception;
+    TeamValueDTO editTeamInfo() throws Exception;
+    List<TeamValueDTO> showTeam(TeamShowDTO teamShowDTO) throws Exception;
 }

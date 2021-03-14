@@ -18,13 +18,13 @@ public class TeamController {
     private TeamService teamService;
 
     @PostMapping("")
-    public ResponseEntity makeTeam(@RequestBody TeamDTO teamDTO) throws Exception {
+    public ResponseEntity makeTeam(@RequestBody TeamDTO teamDTO) throws Exception { //팀 생성
         return teamService.makeTeam(teamDTO);
     }
 
-    @GetMapping("-list")
-    public ResponseEntity getTeamList() throws Exception {
-        return teamService.getTeamList();
+    @PatchMapping("-list")
+    public ResponseEntity editTeamInfo() throws Exception { //팀 정보 편집
+        return teamService.editTeamInfo();
     }
     @GetMapping
     public ResponseEntity showTeam(TeamShowDTO teamShowDTO) throws Exception {
