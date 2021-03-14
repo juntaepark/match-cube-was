@@ -31,4 +31,10 @@
         GROUP BY tm.team_id;
     </select>
 
+    <update id="myUpdate" parameterType="com.carnival.matchcube.dto.MyUpdateDTO">
+        UPDATE account
+        SET nick_name=#{nickName}
+        WHERE account_id=#{accountId};
+    </update>
+
 </mapper>
