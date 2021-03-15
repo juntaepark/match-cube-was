@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.carnival.matchcube.mapper.FileUploadMapper">
+
+    <insert id="accountFileUpload" parameterType="com.carnival.matchcube.dto.AccountFileUploadDto">
+        INSERT INTO player_image
+        ( account_id, account_image_url )
+        VALUES
+        ( #{accountId}, #{url} );
+    </insert>
+
+    <insert id="teamFileUpload" parameterType="com.carnival.matchcube.dto.TeamFileUploadDto">
+        INSERT INTO team_image
+            ( team_id, team_image_url )
+        VALUES
+            ( #{teamId}, #{url} );
+    </insert>
+
+    <select id="leaderValidation" parameterType="com.carnival.matchcube.dto.TeamFileUploadDto" resultType="int">
+        SELECT EXISTS (
+                SELECT 1
+                FROM   team
+                WHERE  team_id = #{teamId}
+                AND    team_leader_id = #{accountId}
+        );
+    </select>
+
+</mapper>

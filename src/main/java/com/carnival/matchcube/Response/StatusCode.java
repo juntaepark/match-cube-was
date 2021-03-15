@@ -16,6 +16,7 @@ public class StatusCode {
     public static final int DUPLICATED_TEAM_IMAGE = 209;
     public static final int TOO_LONG_TEAM_NAME = 210;
     public static final int CANNOT_UPDATE = 211;
+    public static final int FAIL_UPLOAD = 212;
 
     public static final int BAD_REQUEST =  400;
     public static final int UNAUTHORIZED = 401;

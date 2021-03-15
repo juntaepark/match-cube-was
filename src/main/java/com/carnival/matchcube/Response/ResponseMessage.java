@@ -24,4 +24,5 @@ public class ResponseMessage {
     public static final String NO_TEAM_USER = "활동팀이 없는 회원입니다";
     public static final String TEAM_SHOW_SUCCESS = "팀 조회 성공";
     public static final String NO_EXIST_TEAMS = "목록에 해당하는 팀이 없습니다";
+    public static final String FAIL_FILE_UPLOAD = "파일 업로드에 실패 했습니다.";
 }
