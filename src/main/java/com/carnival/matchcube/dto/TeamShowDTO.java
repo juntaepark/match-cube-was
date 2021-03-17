@@ -5,5 +5,5 @@ import lombok.*;
 @Data
 public class TeamShowDTO {
     public Integer categoryId;
-    public String teamLocation;
+    public int teamArea;
 }

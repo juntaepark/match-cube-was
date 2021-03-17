@@ -65,17 +65,17 @@ public class TeamService {
     }
 
     public ResponseEntity editTeamInfo() throws Exception {
-        TeamValueDTO teamValueDTO = teamMapper.editTeamInfo();
+        TeamShowValueDTO teamValueDTO = teamMapper.editTeamInfo();
 
         return new ResponseEntity(DefaultRes.res(OK, SUCCESS, teamValueDTO), HttpStatus.OK);
     }
 
     public ResponseEntity showTeam(TeamShowDTO teamShowDTO) throws Exception {
-        List<TeamValueDTO> teamValueDTO = teamMapper.showTeam(teamShowDTO);
-        if (teamValueDTO.isEmpty()) {
-            return new ResponseEntity(DefaultRes.res(NO_CONTENT, NO_EXIST_TEAMS, teamValueDTO), HttpStatus.OK);
+        List<TeamShowValueDTO> teamShowValueDTO = teamMapper.showTeam(teamShowDTO);
+        if (teamShowValueDTO.isEmpty()) {
+            return new ResponseEntity(DefaultRes.res(NO_CONTENT, NO_EXIST_TEAMS, teamShowValueDTO), HttpStatus.OK);
         } else {
-            return new ResponseEntity(DefaultRes.res(OK, TEAM_SHOW_SUCCESS, teamValueDTO), HttpStatus.OK);
+            return new ResponseEntity(DefaultRes.res(OK, TEAM_SHOW_SUCCESS, teamShowValueDTO), HttpStatus.OK);
         }
 
     }

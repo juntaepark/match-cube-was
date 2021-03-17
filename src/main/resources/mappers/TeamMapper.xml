@@ -11,11 +11,11 @@
         SELECT EXISTS(SELECT * FROM team_image WHERE team_image_url = #{URL}) as exist;
     </select>
 
-    <select id="insertImage" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+    <select id="insertImage" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamShowValueDTO">
         INSERT INTO team_image(team_id, team_image_url) VALUES (((SELECT MAX(team_id) FROM team) + 1), #{URL});
     </select>
 
-    <select id="makeTeam" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+    <select id="makeTeam" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamShowValueDTO">
         INSERT INTO team(category_id, team_name, team_area, team_introduction, uniform, team_leader_id, team_vehicle,
                             membership_fee, membership_per, representative_image_id)
         VALUES(#{category}, #{name}, #{area}, #{introduction}, #{uniform}, #{leader}, #{vehicle}, #{fee}, #{period},
@@ -32,24 +32,39 @@
                        WHERE ti.team_image_url = #{URL}), 0) AS isMatched;
     </select>
 
-    <select id="adjustTeamId" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+    <select id="adjustTeamId" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamShowValueDTO">
         UPDATE team_image INNER JOIN team ON team_image.image_id = team.representative_image_id
             SET team_image.team_id = team.team_id
         WHERE team_image.team_image_url = #{URL};
     </select>
 
-    <select id="showTeam" parameterType="com.carnival.matchcube.dto.TeamShowDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
-        SELECT *
-        FROM team
+    <select id="showTeam" parameterType="com.carnival.matchcube.dto.TeamShowDTO" resultType="com.carnival.matchcube.dto.TeamShowValueDTO">
+        SELECT ti.team_image_url, te.team_name,
+        te.want_player, te.want_mercenary, te.want_match
+        FROM team AS te
+        INNER JOIN team_image ti ON te.team_id = ti.team_id
+        LEFT JOIN (
+        SELECT l.account_id, l.login_at
+        FROM login_log l ORDER BY l.login_at DESC limit 1
+        ) ll ON te.team_leader_id = ll.account_id
+        LEFT JOIN (
+        SELECT te1.team_id, COUNT(f1.team_id) AS famous
+        FROM fan f1
+        INNER JOIN team te1 ON f1.team_id = te1.team_id
+        WHERE f1.status=1
+        GROUP BY f1.team_id
+        ) f ON te.team_id = f.team_id
         WHERE category_id = #{categoryId}
-        AND team_location = #{teamLocation};
+        AND te.team_area = #{teamArea}
+        AND ti.image_id = te.representative_image_id
+        ORDER BY ll.login_at DESC, f.famous DESC;
     </select>
 
-    <select id="getMoreMyTeamInfo" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+    <select id="getMoreMyTeamInfo" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamShowValueDTO">
 
     </select>
 
-    <select id="editTeamInfo" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamValueDTO">
+    <select id="editTeamInfo" parameterType="com.carnival.matchcube.dto.TeamDTO" resultType="com.carnival.matchcube.dto.TeamShowValueDTO">
 
     </select>
 
