@@ -59,9 +59,9 @@ public class TeamService {
     }
 
     public ResponseEntity getMoreMyTeamInfo(int teamId) throws Exception {
-        TeamDTO teamValueDTO = teamMapper.getMoreMyTeamInfo(teamId);
+        TeamDTO teamDTO = teamMapper.getMoreMyTeamInfo(teamId);
 
-        return new ResponseEntity(DefaultRes.res(OK, SUCCESS, teamValueDTO), HttpStatus.OK);
+        return new ResponseEntity(DefaultRes.res(OK, SUCCESS, teamDTO), HttpStatus.OK);
     }
 
     public ResponseEntity editTeamInfo() throws Exception {
